@@ -101,7 +101,7 @@ With the image set, we now move on to adding the required variables. Scroll down
 
 ![Create variables](./images/add-ce-job-vars.png)
 
-![Add a variable](./images/add-var.png)
+![Add a variable](./images/add-var-small.png)
 
 Repeat the process for the `WORKSPACE_ID`, and `LOGDNA_INGESTION_KEY` variables and click `Create`.
 
