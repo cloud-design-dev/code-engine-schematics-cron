@@ -91,7 +91,7 @@ From the left-hand menu, click on `Jobs` and then the `Create` button.
 
 Give the job a `Name` and click the `Configure Image` button to be taken to the Container selection menu. Select the image to use and click `Done`.
 
-![Configure job image](./images/configure-job-image.png)
+![Configure job image](./images/configure-job-image-small.png)
 
 #### Create code engine job from the CLI (todo)
 
