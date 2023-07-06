@@ -10,7 +10,10 @@ The following environment variables will be needed when configuring the Code Eng
 - `WORKSPACE_ID`: The ID of the Schematics workspace where the server is deployed.
 - `LOGDNA_INGESTION_KEY`: The LogDNA ingestion key for logging.
 
-> **Optional**: If you would like to deploy resources via the CLI, please ensure you have the code engine plugin installed. `ibmcloud plugin install code-engine`
+### Optional 
+
+- If you would like to deploy resources via the CLI, please ensure you have the code engine plugin installed. `ibmcloud plugin install code-engine`
+- The python script is set to use to the `us-south` endpoint for both Log Analysis and Schematics. Update these endpoints if you need to target different locations.  
 
 ## Steps
 
@@ -68,30 +71,52 @@ On the **Strategy** menu, the only change I would recommend is selecting the **S
 
 - **Registry server**: The IBM Cloud Container Registry server to use for storing your container images.
 - **Registry access secret**: The IBM Cloud Container Registry access secret to use for storing your container images. This should be automatically populated.
-- **Namespace**: The namespace to store the container image in. You can select an existing namespace or create a new one.
+- **Namespace**: The namespace to store the container image in. Ysou can select an existing namespace or create a new one.
 - **Repository**: The name of the container image. This will be used in the next step when creating the Code Engine job.
 - **Tag**: The tag to use for the container image.
 
 ![Container Build Configuration](./images/build-config.png)
 
-Once the build is configured, you will land on the build details page. Click the `Submit build` button to start the intial container build process.
+Once the build is configured, you will land on the build details page. Click the `Submit build` button to start the intial container build process. When the build completes move on to creating our Code Engine job.
 
-#### Create container build from the CLI
-
-```sh
-
-```
+#### Create container build from the CLI (todo)
 
 ### Step 3: Create a Code Engine job using the build created in the previous step
 
 #### Create code engine job from the portal
 
-#### Create code engine job from the CLI
+From the left-hand menu, click on `Jobs` and then the `Create` button.
 
-```sh
-```
+![Create Code Engine Job](./images/create-job.png)
+
+Give the job a `Name` and click the `Configure Image` button to be taken to the Container selection menu. Select the image to use and click `Done`.
+
+![Configure job image](./images/configure-job-image.png)
+
+#### Create code engine job from the CLI (todo)
 
 ### Step 4: Configure the job with the environment variables listed above
 
+With the image set, we now move on to adding the required variables. Scroll down to expand the `Environment Variables` section and click `Add`. 
+
+![Create variables](./images/add-ce-job-vars.png)
+
+![Add a variable](./images/add-var.png)
+
+Repeat the process for the `WORKSPACE_ID`, and `LOGDNA_INGESTION_KEY` variables and click `Create`.
+
 ### Step 5: Create schedules for the job to run at the desired intervals
 
+To run our Code Engine job on a schedule we're going to subscribe to a `cron` event. From the left-hand menu, click on `Event subscriptions` and then `Create`. 
+
+![](./images/create-subscription.png)
+
+For **Event Type** select `Periodic Timer`, give the subscription a name and click `Next`.
+
+![](./images/create-timer.png)
+
+Now we set the schedule for our trigger. You can select from pre-defined options or use `cron` syntax if you need something more complex. 
+
+![](./images/set-schedule.png)
+
+With the timer set, click `Next` until you get to the `Event consumer` option. Select **Job** from the `Component type`, and then select the previously defined Job name, click `Next` and then finally `Create`. 

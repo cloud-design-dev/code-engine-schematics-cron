@@ -33,10 +33,9 @@ def logDnaLogger():
 
     options = {
         'index_meta': True,
-        'tags': 'rolling-iaas',
         'url': 'https://logs.private.us-south.logging.cloud.ibm.com/logs/ingest',
         'log_error_response': True,
-        'app': 'refresh-job'
+        'app': 'schematics-refresh'
     }
 
     logger = LogDNAHandler(key, options)
