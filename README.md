@@ -54,19 +54,44 @@ The next steo is to set up a Code Engine build to pull this repository and build
 
 #### Create container build from the Portal
 
-From the left hand Code Engine menu, click on `Image builds` and then click the `Create build` button.
+From the left hand Code Engine menu, click on `Image builds` and then click the `Create` button.
 
 ![Click on Image Build](https://dsc.cloud/quickshare/Shared-Image-2023-07-06-07-45-03.png)
 
+The build configuration process takes place in 3 menus: **Source**, **Strategy**, and **Output**. On the **Source** menu fill in the following fields and click `Next`:
+
+- **Name**: A name for the build.
+- **Code repo URL**: `https://github.com/cloud-design-dev/code-engine-schematics-cron.git`
+- **Branch name**: `main`
+
+On the **Strategy** menu, the only change I would recommend is selecting the **Small** profile under `Build resources`. The container image is very small, so it does not require much memory or CPU to build. Click `Next` when finished. This takes us our **Output** options, where the container will be stored. Select or fill in the following fields and click `Done` to complete the build configuration:
+
+- **Registry server**: The IBM Cloud Container Registry server to use for storing your container images.
+- **Registry access secret**: The IBM Cloud Container Registry access secret to use for storing your container images. This should be automatically populated.
+- **Namespace**: The namespace to store the container image in. You can select an existing namespace or create a new one.
+- **Repository**: The name of the container image. This will be used in the next step when creating the Code Engine job.
+- **Tag**: The tag to use for the container image.
+
+![Container Build Configuration](./images/build-config.png)
+
+Once the build is configured, you will land on the build details page. Click the `Submit build` button to start the intial container build process.
 
 #### Create container build from the CLI
 
 ```sh
+
 ```
 
-### Step 3: Create a Code Engine job using the build created in the previous step.
+### Step 3: Create a Code Engine job using the build created in the previous step
 
-### Step 4: Configure the job with the environment variables listed above.
+#### Create code engine job from the portal
 
-### Step 5: Create schedules for the job to run at the desired intervals.
+#### Create code engine job from the CLI
+
+```sh
+```
+
+### Step 4: Configure the job with the environment variables listed above
+
+### Step 5: Create schedules for the job to run at the desired intervals
 
